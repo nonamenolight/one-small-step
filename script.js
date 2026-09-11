@@ -18,17 +18,24 @@ function updateUptime() {
     const minutes = Math.floor(seconds / 60);
     seconds %= 60;
 
-    const value = language === "zh"
-        ? `${Math.floor(years)} 年 ${Math.floor(days)} 日 ${hours} 时 ${minutes} 分 ${seconds} 秒`
-        : `${Math.floor(years)} years ${Math.floor(days)} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    if (language === "zh") {
+        document.getElementById("uptime-days").textContent =
+            `${Math.floor(years)} 年 ${days} 日`;
 
-    document.getElementById("uptime-value").textContent = value;
+        document.getElementById("uptime-time").textContent =
+            `${hours} 时 ${minutes} 分 ${seconds} 秒`;
+    } else {
+        document.getElementById("uptime-days").textContent =
+            `${Math.floor(years)} years ${days} days`;
+
+        document.getElementById("uptime-time").textContent =
+            `${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }
 }
 
 document
     .getElementById("language-switch")
     .addEventListener("click", () => {
-
         language = language === "zh" ? "en" : "zh";
 
         document.documentElement.lang =

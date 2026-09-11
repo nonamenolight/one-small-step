@@ -61,12 +61,18 @@ h1 {
 
 .uptime {
     margin-top: 80px;
+    font-family: monospace;
+    letter-spacing: 1px;
 }
 
-#uptime-value {
-    font-family: monospace;
+#uptime-days {
     font-size: clamp(24px, 4vw, 48px);
-    letter-spacing: 1px;
+}
+
+#uptime-time {
+    margin-top: 12px;
+    font-size: clamp(20px, 3vw, 36px);
+    color: #555555;
 }
 
 .since {
