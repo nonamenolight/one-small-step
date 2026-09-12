@@ -33,10 +33,9 @@ jobs:
       - name: Upload deployment archive
         run: |
           scp \
-            scp \
-              -i ~/.ssh/deploy_key \
-              "$RUNNER_TEMP/one-small-step.tar.gz" \
-              deploy@${{ secrets.DEPLOY_HOST }}:/home/deploy/deployments/
+            -i ~/.ssh/deploy_key \
+            "$RUNNER_TEMP/one-small-step.tar.gz" \
+            deploy@${{ secrets.DEPLOY_HOST }}:/home/deploy/deployments/
 
       - name: Deploy
         run: |
