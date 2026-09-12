@@ -11,7 +11,7 @@ body {
             rgba(0, 0, 0, 0.45),
             rgba(0, 0, 0, 0.45)
         ),
-        url("./images/apollo-11-earthrise.jpg");
+        url("./images/moon.jpg");
 
     background-size: cover;
     background-position: center;
