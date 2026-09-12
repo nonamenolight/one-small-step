@@ -15,7 +15,7 @@ jobs:
 
       - name: Create deployment archive
         run: |
-          tar -czf one-small-step.tar.gz \
+          tar -czf "$RUNNER_TEMP/one-small-step.tar.gz" \
             --exclude='.git' \
             --exclude='.github' \
             .
@@ -33,9 +33,10 @@ jobs:
       - name: Upload deployment archive
         run: |
           scp \
-            -i ~/.ssh/deploy_key \
-            one-small-step.tar.gz \
-            deploy@${{ secrets.DEPLOY_HOST }}:/home/deploy/deployments/
+            scp \
+              -i ~/.ssh/deploy_key \
+              "$RUNNER_TEMP/one-small-step.tar.gz" \
+              deploy@${{ secrets.DEPLOY_HOST }}:/home/deploy/deployments/
 
       - name: Deploy
         run: |
@@ -45,7 +46,7 @@ jobs:
             'sudo /usr/local/sbin/deploy-one-small-step /home/deploy/deployments/one-small-step.tar.gz'
 
       - name: Cleanup remote archive
-        if: always()
+        if: success()
         run: |
           ssh \
             -i ~/.ssh/deploy_key \
